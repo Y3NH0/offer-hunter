@@ -42,3 +42,13 @@ thisisyenho/
 
 - Source: `docs/resumes/cv.tex`
 - Compile with: `xelatex cv.tex` (requires XeLaTeX for CJK support)
+
+## Notion Integration
+
+- **2026 JOB 主頁面** (page ID: `26fa0e4d-dfa1-8052-b7b2-f859f0d17872`)
+  - 內含資料庫「職缺整理」— 記錄預計投遞的職缺
+- **求職 CV/Cover Letter 生成流程：**
+  1. 從 Notion「職缺整理」fetch 目標職缺內容（JD、公司資訊等）
+  2. 讀取 `material/` 內的履歷素材
+  3. 根據職缺需求挑選 & 調整相關經歷，生成客製化的 CV 和求職信
+  4. 產出放到 `docs/resumes/`
