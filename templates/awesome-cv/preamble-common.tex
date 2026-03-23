@@ -2,8 +2,13 @@
 % CJK Support
 %-------------------------------------------------------------------------------
 \usepackage{xeCJK}
-\setCJKmainfont{PingFang TC}
-\setCJKsansfont{PingFang TC}
+\setCJKmainfont{PingFang TC}[
+  BoldFont=PingFang TC Semibold,
+  ItalicFont=PingFang TC Light,
+]
+\setCJKsansfont{PingFang TC}[
+  BoldFont=PingFang TC Semibold,
+]
 \setCJKmonofont{PingFang TC}
 % Fallback for non-macOS:
 % \setCJKmainfont{Noto Sans TC}

@@ -81,9 +81,23 @@
 \defaultfontfeatures{
   Renderer=HarfBuzz,
 }
-\setmainfont{Source Sans 3}
-\setsansfont{Source Sans 3}
-\newfontfamily\roboto{Roboto}
+\setmainfont{PingFang TC}[
+  UprightFont=PingFang TC Regular,
+  BoldFont=PingFang TC Semibold,
+  ItalicFont=PingFang TC Light,
+  FontFace={l}{n}{Font=PingFang TC Light},
+]
+\setsansfont{PingFang TC}[
+  UprightFont=PingFang TC Regular,
+  BoldFont=PingFang TC Semibold,
+  ItalicFont=PingFang TC Light,
+  FontFace={l}{n}{Font=PingFang TC Light},
+]
+\newfontfamily\roboto{PingFang TC}[
+  UprightFont=PingFang TC Regular,
+  BoldFont=PingFang TC Semibold,
+  FontFace={l}{n}{Font=PingFang TC Light},
+]
 % Needed for the photo ID
 \RequirePackage[skins]{tcolorbox}
 % Needed to deal a paragraphs
@@ -174,8 +188,8 @@
 %-------------------------------------------------------------------------------
 % Configure styles for each CV elements
 % For fundamental structures
-\newcommand*{\headerfirstnamestyle}[1]{{\fontsize{32pt}{1em}\headerfontlight\color{graytext} #1}}
-\newcommand*{\headerlastnamestyle}[1]{{\fontsize{32pt}{1em}\headerfont\bfseries\color{text} #1}}
+\newcommand*{\headerfirstnamestyle}[1]{{\fontsize{32pt}{1em}\headerfont\bfseries\color{text} #1}}
+\newcommand*{\headerlastnamestyle}[1]{{\fontsize{32pt}{1em}\headerfontlight\color{graytext} #1}}
 \newcommand*{\headerpositionstyle}[1]{{\fontsize{7.6pt}{1em}\bodyfont\scshape\color{awesome} #1}}
 \newcommand*{\headeraddressstyle}[1]{{\fontsize{8pt}{1em}\headerfont\itshape\color{lighttext} #1}}
 \newcommand*{\headersocialstyle}[1]{{\fontsize{6.8pt}{1em}\headerfont\color{text} #1}}
@@ -185,7 +199,7 @@
 \newcommand*{\sectionstyle}[1]{%
   \def\@acvSectionTmp{#1}
   \ifthenelse{\boolean{acvSectionColorHighlight}}{%
-    \StrSplit{\@acvSectionTmp}{3}{\acvSectionStringAwesome}{\acvSectionStringPlain}%
+    \StrSplit{\@acvSectionTmp}{1}{\acvSectionStringAwesome}{\acvSectionStringPlain}%
       \color{awesome}\sectionstyleface{\acvSectionStringAwesome%
       \color{text}{\acvSectionStringPlain}}}%
       {\color{text}\sectionstyleface{\@acvSectionTmp}}}
@@ -719,19 +733,34 @@
   \end{center}
 }
 % Define an entry of cv information
-% Usage: \cventry{<position>}{<title>}{<location>}{<date>}{<description>}
+% Usage: \cventry{<position>}{<organization>}{<location>}{<date>}{<description>}
+% Renders as: **Position @ Organization** ─── Date (accent)
+%                                           Location (gray)
 \newcommand*{\cventry}[5]{%
   \vspace{-2.0mm}
   \setlength\tabcolsep{0pt}
   \setlength{\extrarowheight}{0pt}
   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
-    \ifempty{#2#3}
-      {\entrypositionstyle{#1} & \entrydatestyle{#4} \\}
-      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\
-      \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
+    \entrytitlestyle{#1}\ifempty{#2}{}{\entrytitlestyle{ @ #2}} &
+    \entrylocationstyle{#4} \\
+    \ifempty{#3}{}{ & \entrydatestyle{#3} \\}
     \ifstrempty{#5}
       {}
       {\multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}} \\}
+  \end{tabular*}%
+}
+
+% Define a project entry (simpler than cventry: just title + date)
+% Usage: \cvproject{<title>}{<date>}{<description>}
+\newcommand*{\cvproject}[3]{%
+  \vspace{-2.0mm}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
+    \entrytitlestyle{#1} & \entrydatestyle{#2} \\
+    \ifstrempty{#3}
+      {}
+      {\multicolumn{2}{L{\textwidth}}{\descriptionstyle{#3}} \\}
   \end{tabular*}%
 }
 
@@ -766,7 +795,7 @@
   \begin{center}
     \setlength\tabcolsep{0pt}
     \setlength{\extrarowheight}{0pt}
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} C{1.5cm} L{\textwidth - 4.0cm} R{2.5cm}}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
 }{%
     \end{tabular*}
   \end{center}
@@ -774,13 +803,12 @@
 % Define a line of cv information(honor, award or something else)
 % Usage: \cvhonor{<position>}{<title>}{<location>}{<date>}
 \newcommand*{\cvhonor}[4]{%
-  \honordatestyle{#4} & \honorpositionstyle{#1}\ifempty{#2}{}{,} \honortitlestyle{#2} & \honorlocationstyle{#3} \\
+  \honorpositionstyle{#1}\ifempty{#2}{}{,} \honortitlestyle{#2} & \entrylocationstyle{#4}\enspace\honordatestyle{#3} \\
 }
 
 % Define an environment for cvskill
 \newenvironment{cvskills}{%
   \vspace{\acvSectionContentTopSkip}
-  \vspace{-2.0mm}
     \setlength\tabcolsep{1ex}
     \setlength{\extrarowheight}{0pt}
     \tabularx{\textwidth}{r>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}X}
