@@ -65,8 +65,13 @@ Based on the approved strategy (or auto-determined if skipped):
 
 1. **Determine output folder name**: lowercase kebab-case from company + position (e.g., `appier-ai-engineer`)
 2. **Create output directory**: `docs/resumes/<company-position>/`
-3. **Read the LaTeX template** from the repo's template directory
-4. **Generate 4 .tex files**:
+3. **Read the LaTeX template** from `templates/awesome-cv/`:
+   - Read `cv.tex` for CV structure
+   - Read `cover-letter.tex` for Cover Letter structure
+   - Read `preamble-common.tex` for shared preamble
+   - Read relevant `sections/*.tex` for section patterns
+4. **Copy `awesome-cv.cls` and `preamble-common.tex`** into the output directory
+5. **Generate 4 .tex files**:
    - `cv-zh.tex` — Chinese CV
    - `cv-en.tex` — English CV
    - `cover-letter-zh.tex` — Chinese Cover Letter

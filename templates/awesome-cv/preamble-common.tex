@@ -1,0 +1,23 @@
+%-------------------------------------------------------------------------------
+% CJK Support
+%-------------------------------------------------------------------------------
+\usepackage{xeCJK}
+\setCJKmainfont{PingFang TC}
+\setCJKsansfont{PingFang TC}
+\setCJKmonofont{PingFang TC}
+% Fallback for non-macOS:
+% \setCJKmainfont{Noto Sans TC}
+
+\xeCJKsetup{CJKmath=true, PunctStyle=kaiming}
+
+%-------------------------------------------------------------------------------
+% Custom Accent Color
+%-------------------------------------------------------------------------------
+% Override Awesome-CV's default accent colors with a distinctive teal
+\definecolor{awesome}{HTML}{1A7A7A}
+
+%-------------------------------------------------------------------------------
+% Footer
+%-------------------------------------------------------------------------------
+\fancyfootoffset{0cm}
+\rfoot{\color{lighttext}\fontsize{8pt}{1em}\bodyfontlight Updated: \today}

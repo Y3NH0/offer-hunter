@@ -23,8 +23,15 @@ thisisyenho/
 │   ├── soft-skills.md     # 軟實力（含 raw notes）
 │   ├── competitions.md    # 競賽經歷
 │   └── extracurricular.md # 課外活動
+├── templates/             # LaTeX 模板
+│   └── awesome-cv/        # 基於 Awesome-CV 的自訂模板
+│       ├── awesome-cv.cls
+│       ├── preamble-common.tex
+│       ├── cv.tex
+│       ├── cover-letter.tex
+│       └── sections/
 ├── docs/                  # 文件資料
-│   ├── resumes/           # 履歷成品（md, tex, pdf）
+│   ├── resumes/           # 履歷成品（每個職缺一個資料夾）
 │   ├── reviews/           # 績效評核
 │   ├── papers/            # 論文
 │   └── research/          # 求職研究、規劃筆記
@@ -40,8 +47,10 @@ thisisyenho/
 
 ## LaTeX CV
 
-- Source: `docs/resumes/cv.tex`
-- Compile with: `xelatex cv.tex` (requires XeLaTeX for CJK support)
+- Template: `templates/awesome-cv/` (custom fork of Awesome-CV by posquit0)
+- Compile with: `xelatex` (requires XeLaTeX + CJK fonts, e.g. PingFang TC)
+- Generated per-job outputs go to `docs/resumes/<company-position>/`
+- Each output folder contains its own `awesome-cv.cls` copy for self-contained compilation
 
 ## Notion Integration
 
