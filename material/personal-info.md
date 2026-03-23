@@ -3,7 +3,7 @@
 ## Basic
 
 - **Name (zh):** 陳彥合
-- **Name (en):** Yen-Ho Chen
+- **Name (en):** Yen-Ho (Ian) Chen
 - **Location:** Hsinchu, Taiwan / 新竹, 台灣
 
 ## Contact
