@@ -506,7 +506,7 @@
   \tcbox[
     colback=white, colframe=white,
     boxrule=0pt, arc=4pt, outer arc=4pt,
-    left=4pt, right=4pt, top=1pt, bottom=1pt,
+    left=3pt, right=3pt, top=0pt, bottom=0pt,
     nobeforeafter, box align=center,
     tcbox raise base
   ]{\fontsize{13pt}{1em}\bodyfont\bfseries\color{awesome} #1}%
@@ -535,11 +535,11 @@
     \begin{minipage}[c]{\dimexpr\textwidth-4.4cm\relax}%
       \raggedright
       \headerbannerfirstnamestyle{\@firstname}\headerbannerlastnamestyle{{}\acvHeaderNameDelim\@lastname}%
-      \\[4pt]%
+      \\[8pt]%
       \begin{minipage}[c]{2.2cm}%
         \headerbannerpositionstyle{\@position}%
       \end{minipage}%
-      \hspace{24pt}%
+      \hspace{30pt}%
       \begin{minipage}[c]{10cm}%
         \headerbannercontactstyle{%
           \ifthenelse{\isundefined{\@github}}{}{\faSquareGithub\enspace\href{https://github.com/\@github}{\color{white!90}\@github}\quad}%
