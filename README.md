@@ -1,48 +1,114 @@
-# Personal Resume & Website
+# Resume Toolkit
 
-個人履歷與網站專案
+Generate tailored, professional CVs and Cover Letters from job descriptions — powered by Claude Code + LaTeX.
+
+## Features
+
+- **JD-tailored generation**: Automatically customize your resume for each job application
+- **Bilingual support**: Chinese (繁體中文) and English output
+- **Professional LaTeX template**: Custom Awesome-CV with banner header, accent colors, and CJK support
+- **Notion integration**: Track job listings and fetch JD content directly
+- **AI-powered review**: Get feedback on your resume using Gemini CLI
+- **Strategy phase**: Analyze JD vs your experience before generating — or skip and go direct
+
+## Quick Start
+
+### Prerequisites
+
+- [Claude Code](https://claude.ai/code) CLI
+- XeLaTeX (via MacTeX or TeX Live)
+- CJK fonts (PingFang TC on macOS, or Noto Sans TC)
+- (Optional) Gemini CLI for resume review
+- (Optional) Notion MCP plugin for job tracking
+
+### Setup
+
+1. **Clone and set up materials**
+   ```bash
+   git clone <this-repo>
+   cd resume-toolkit
+   ```
+
+2. **Copy example files and fill in your content**
+   ```bash
+   cp material/personal-info.md.example material/personal-info.md
+   cp material/experience.md.example material/experience.md
+   cp material/education.md.example material/education.md
+   cp material/skills.md.example material/skills.md
+   # Edit each file with your actual content
+   ```
+
+3. **Install XeLaTeX** (if not already)
+   ```bash
+   # macOS
+   brew install --cask mactex-no-gui
+   ```
+
+4. **Test the template**
+   ```bash
+   cd templates/awesome-cv
+   xelatex cv.tex
+   ```
+
+### Generate a Resume
+
+Use the Claude Code skill:
+```
+/generate-resume "AI Engineer at Company X"
+```
+
+Or provide JD text directly:
+```
+/generate-resume --skip-strategy
+> Paste your JD here...
+```
+
+### Review a Resume
+
+After generating, get AI feedback:
+```
+@resume-reviewer
+```
 
 ## Project Structure
 
 ```
-.
-├── material/                # 履歷原始素材
-│   ├── projects/            # 各專案經歷（中英文）
-│   ├── photos/              # 照片素材
-│   ├── experience.md        # 工作經歷
-│   ├── education.md         # 學歷
-│   ├── skills.md            # 技術技能
-│   ├── soft-skills.md       # 軟實力
-│   ├── competitions.md      # 競賽經歷
-│   └── extracurricular.md   # 課外活動
-├── docs/
-│   ├── resumes/             # 履歷成品（tex, pdf）
-│   ├── reviews/             # 績效評核
-│   ├── papers/              # 論文
-│   └── research/            # 求職研究、規劃筆記
-├── .claude/
-│   └── skills/
-│       └── generate-resume/ # 客製化履歷生成 skill
-├── CLAUDE.md
-└── README.md
+material/           # Your resume content (single source of truth)
+├── *.md.example    # Template files — copy and fill in
+templates/          # LaTeX templates
+├── awesome-cv/     # Custom Awesome-CV with banner header
+.claude/
+├── skills/         # generate-resume skill
+├── agents/         # resume-reviewer agent (Gemini-powered)
+docs/resumes/       # Generated output per job application
 ```
 
-## Workflow
+## Template Features
 
-1. **素材管理** — `material/` 是履歷內容的 single source of truth，中英文並存
-2. **職缺追蹤** — Notion「職缺整理」資料庫管理目標職缺
-3. **履歷生成** — 使用 `/generate-resume` skill，根據 JD 客製化 CV + Cover Letter
-4. **產出** — 每個職缺產出獨立資料夾於 `docs/resumes/<company-position>/`
+- Full-width accent color banner header with photo
+- Tag-style position label
+- Two-line entry format (Organization + Position)
+- Bold subtitles on bullet points
+- Section-first-char accent coloring
+- `\cvproject` command for simplified project entries
+- `\cvskill` for left-aligned skill categories
+- PingFang TC / Noto Sans TC CJK support
 
-## Tech Stack
+## Customization
 
-- **LaTeX (XeLaTeX):** CV / Cover Letter 生成，基於 Awesome-CV 客製化 template
-- **Notion:** 職缺管理與 JD 來源
-- **Claude Code:** 自動化履歷客製化流程
+### Accent Color
+Edit `templates/awesome-cv/preamble-common.tex`:
+```latex
+\definecolor{awesome}{HTML}{1A7A7A}  % Change to your preferred color
+```
 
-## Roadmap
+### Font
+Edit `templates/awesome-cv/awesome-cv.cls` font section to use your preferred fonts.
 
-- [x] 整理履歷素材（material/）
-- [x] 建立 generate-resume skill
-- [ ] 客製化 LaTeX template（基於 Awesome-CV）
-- [ ] 個人網站（Next.js）
+### Section Order
+Edit the `\input{sections/...}` order in `cv.tex`.
+
+## License
+
+- LaTeX template based on [Awesome-CV](https://github.com/posquit0/Awesome-CV) by posquit0 (LPPL v1.3c)
+- Toolkit code: MIT

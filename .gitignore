@@ -1,5 +1,20 @@
 .DS_Store
 
+# Personal content (fill in your own)
+material/personal-info.md
+material/experience.md
+material/education.md
+material/skills.md
+material/soft-skills.md
+material/competitions.md
+material/extracurricular.md
+material/projects/*.md
+material/photos/*.jpg
+material/photos/*.png
+
+# Generated resumes (per job application)
+docs/resumes/*/
+
 # LaTeX build artifacts
 *.aux
 *.log
