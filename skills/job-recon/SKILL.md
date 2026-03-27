@@ -97,9 +97,9 @@ description: >
 `docs/research/<company>-<topic>.md`
 
 例如：
-- `docs/research/trendmicro-ai-lab-stephanie-chou.md`
 - `docs/research/google-deepmind-taipei-team.md`
 - `docs/research/appier-ai-engineering.md`
+- `docs/research/nvidia-nim-microservices.md`
 
 ### 文件結構
 

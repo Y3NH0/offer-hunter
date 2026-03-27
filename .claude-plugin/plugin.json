@@ -1,0 +1,8 @@
+{
+  "name": "offer-hunter",
+  "description": "AI-powered resume toolkit: generate tailored CVs & Cover Letters, review resumes, and research job targets",
+  "version": "1.0.0",
+  "author": {
+    "name": "Yen-Ho Chen"
+  }
+}

@@ -20,8 +20,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
----
-
-Note: The LaTeX template in `templates/awesome-cv/` is based on
-[Awesome-CV](https://github.com/posquit0/Awesome-CV) by posquit0,
-licensed under the LaTeX Project Public License v1.3c (LPPL-1.3c).

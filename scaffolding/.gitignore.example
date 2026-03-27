@@ -1,0 +1,31 @@
+.DS_Store
+
+# Personal resume content (fill in your own)
+material/personal-info.md
+material/experience.md
+material/education.md
+material/skills.md
+material/soft-skills.md
+material/competitions.md
+material/extracurricular.md
+material/projects/*.md
+material/photos/*.jpg
+material/photos/*.png
+
+# Generated resumes (per job application)
+docs/resumes/*/
+
+# Job recon research
+docs/research/
+
+# Resume config (contains local paths)
+.claude/resume-config.json
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.xdv

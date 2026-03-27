@@ -4,62 +4,43 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-A resume generation toolkit that creates tailored CVs and Cover Letters (LaTeX → PDF) based on job descriptions. Supports bilingual output (Chinese/English) with Notion integration for job tracking.
+Offer Hunter is a Claude Code plugin that helps job seekers generate tailored CVs and Cover Letters (LaTeX -> PDF), review resumes with AI, and research job targets. It is template-agnostic — users bring their own LaTeX template.
 
 ## Language
 
 Respond in Traditional Chinese (繁體中文) unless the context requires English.
 
-## Repository Structure
+## Plugin Structure
 
 ```
 .
-├── material/              # Resume source materials (your content)
-│   ├── projects/          # Project experiences (zh + en)
-│   ├── photos/            # Headshot photos
-│   ├── experience.md      # Work experience
-│   ├── education.md       # Education
-│   ├── skills.md          # Technical skills
-│   └── ...                # See .example files for format
-├── templates/             # LaTeX templates
-│   └── awesome-cv/        # Custom Awesome-CV template
-│       ├── awesome-cv.cls # Modified class file
-│       ├── preamble-common.tex
-│       ├── cv.tex         # CV template
-│       ├── cover-letter.tex
-│       └── sections/      # Section templates
-├── docs/
-│   └── resumes/           # Generated output (per job application)
-├── .claude/
-│   ├── skills/
-│   │   └── generate-resume/  # Resume generation skill
-│   └── agents/
-│       └── resume-reviewer.md  # Gemini-powered review agent
-└── README.md
+├── .claude-plugin/
+│   └── plugin.json          # Plugin manifest
+├── skills/
+│   ├── setup-resume/        # Initialize workspace + configure template
+│   ├── generate-resume/     # Generate tailored CV & Cover Letter
+│   └── job-recon/           # Deep research on job targets
+├── agents/
+│   └── resume-reviewer.md   # AI-powered resume review
+├── scaffolding/
+│   └── material/            # .example files for user setup
+├── LICENSE
+├── README.md
+└── README_zhtw.md
 ```
 
 ## Key Conventions
 
-- `material/` is the single source of truth for resume content
-- Material files contain both Chinese (zh) and English (en) versions
-- Resume outputs go in `docs/resumes/<company-position>/`
-- Each output folder contains its own `awesome-cv.cls` copy for self-contained compilation
-
-## LaTeX CV
-
-- Template: `templates/awesome-cv/` (custom fork of Awesome-CV by posquit0)
-- Compile with: `xelatex` (requires XeLaTeX + CJK fonts, e.g. PingFang TC or Noto Sans TC)
-- Generated per-job outputs go to `docs/resumes/<company-position>/`
-
-## Notion Integration (Optional)
-
-- Set up a Notion database to track job listings
-- The `generate-resume` skill can fetch JD content from Notion via MCP
-- Configure your Notion page ID in the skill or provide JD text directly
+- This is a **Claude Code plugin**, not a standalone repo for end users
+- Users install this plugin, then run `/setup-resume` in their own project to initialize
+- `material/` lives in the user's project (not in this plugin repo)
+- Template configuration is stored in the user's `.claude/resume-config.json`
+- No specific LaTeX template is bundled — users provide their own
 
 ## Workflow
 
-1. Fill in `material/` with your resume content (see `.example` files)
-2. Use `/generate-resume` with a job listing to create tailored CV + Cover Letter
-3. Use `@resume-reviewer` to get AI-powered feedback on the output
-4. Compile and iterate
+1. User installs the plugin
+2. `/setup-resume` — configures template source and material directory
+3. `/generate-resume` — generates tailored resume for a job listing
+4. `@resume-reviewer` — gets AI feedback on the generated resume
+5. `/job-recon` — researches a company/team/person before an interview

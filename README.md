@@ -1,14 +1,14 @@
-# Resume Toolkit
+# Offer Hunter
 
-Generate tailored, professional CVs and Cover Letters from job descriptions — powered by Claude Code + LaTeX.
+A Claude Code plugin for job seekers: generate tailored resumes, get AI-powered reviews, and research your interview targets.
 
 ## Features
 
-- **JD-tailored generation**: Automatically customize your resume for each job application
-- **Bilingual support**: Chinese (繁體中文) and English output
-- **Professional LaTeX template**: Custom Awesome-CV with banner header, accent colors, and CJK support
-- **Notion integration**: Track job listings and fetch JD content directly
-- **AI-powered review**: Get feedback on your resume using Gemini CLI
+- **JD-tailored generation**: Automatically customize your CV and Cover Letter for each job application
+- **Template-agnostic**: Bring your own LaTeX template — from Overleaf, GitHub, or local files
+- **Bilingual support**: Chinese and English output (if your materials include both)
+- **AI-powered review**: Get resume feedback via Claude Code, Gemini CLI, or a specified model
+- **Job recon**: Deep research on companies, teams, and interviewers before your interview
 - **Strategy phase**: Analyze JD vs your experience before generating — or skip and go direct
 
 ## Quick Start
@@ -16,48 +16,41 @@ Generate tailored, professional CVs and Cover Letters from job descriptions — 
 ### Prerequisites
 
 - [Claude Code](https://claude.ai/code) CLI
-- XeLaTeX (via MacTeX or TeX Live)
-- CJK fonts (PingFang TC on macOS, or Noto Sans TC)
-- (Optional) Gemini CLI for resume review
-- (Optional) Notion MCP plugin for job tracking
+- A LaTeX compiler (XeLaTeX, pdfLaTeX, or LuaLaTeX)
+- A LaTeX resume template (your own, from Overleaf, or from GitHub)
+
+### Install
+
+```bash
+# In Claude Code, install the plugin
+/plugin install offer-hunter
+```
 
 ### Setup
 
-1. **Clone and set up materials**
-   ```bash
-   git clone <this-repo>
-   cd resume-toolkit
-   ```
+Run the setup skill in your project:
 
-2. **Copy example files and fill in your content**
-   ```bash
-   cp material/personal-info.md.example material/personal-info.md
-   cp material/experience.md.example material/experience.md
-   cp material/education.md.example material/education.md
-   cp material/skills.md.example material/skills.md
-   # Edit each file with your actual content
-   ```
+```
+/setup-resume
+```
 
-3. **Install XeLaTeX** (if not already)
-   ```bash
-   # macOS
-   brew install --cask mactex-no-gui
-   ```
-
-4. **Test the template**
-   ```bash
-   cd templates/awesome-cv
-   xelatex cv.tex
-   ```
+This will:
+1. Create a `material/` directory with example files for your resume content
+2. Configure your LaTeX template (local path, Overleaf, or GitHub)
+3. Set up output directories
 
 ### Generate a Resume
 
-Use the Claude Code skill:
 ```
 /generate-resume "AI Engineer at Company X"
 ```
 
-Or provide JD text directly:
+Or provide a JD URL:
+```
+/generate-resume https://example.com/job-posting
+```
+
+Or paste JD text directly:
 ```
 /generate-resume --skip-strategy
 > Paste your JD here...
@@ -70,45 +63,43 @@ After generating, get AI feedback:
 @resume-reviewer
 ```
 
-## Project Structure
+### Research a Job Target
+
+Before an interview, research the company/team/interviewer:
+```
+/job-recon "Research the AI team at Company X"
+```
+
+## How It Works
 
 ```
 material/           # Your resume content (single source of truth)
-├── *.md.example    # Template files — copy and fill in
-templates/          # LaTeX templates
-├── awesome-cv/     # Custom Awesome-CV with banner header
-.claude/
-├── skills/         # generate-resume skill
-├── agents/         # resume-reviewer agent (Gemini-powered)
-docs/resumes/       # Generated output per job application
+├── personal-info.md
+├── experience.md
+├── education.md
+├── skills.md
+└── projects/*.md
+
+your-template/      # Your LaTeX template (configured during setup)
+├── cv.tex
+├── cover-letter.tex
+└── ...
+
+docs/resumes/       # Generated output (per job application)
+└── company-position/
+    ├── cv.tex + cv.pdf
+    └── cover-letter.tex + cover-letter.pdf
 ```
 
-## Template Features
+## Plugin Skills
 
-- Full-width accent color banner header with photo
-- Tag-style position label
-- Two-line entry format (Organization + Position)
-- Bold subtitles on bullet points
-- Section-first-char accent coloring
-- `\cvproject` command for simplified project entries
-- `\cvskill` for left-aligned skill categories
-- PingFang TC / Noto Sans TC CJK support
-
-## Customization
-
-### Accent Color
-Edit `templates/awesome-cv/preamble-common.tex`:
-```latex
-\definecolor{awesome}{HTML}{1A7A7A}  % Change to your preferred color
-```
-
-### Font
-Edit `templates/awesome-cv/awesome-cv.cls` font section to use your preferred fonts.
-
-### Section Order
-Edit the `\input{sections/...}` order in `cv.tex`.
+| Skill | Command | Description |
+|-------|---------|-------------|
+| Setup | `/setup-resume` | Initialize workspace and configure template |
+| Generate | `/generate-resume` | Create tailored CV & Cover Letter |
+| Recon | `/job-recon` | Research companies, teams, and people |
+| Review | `@resume-reviewer` | AI-powered resume feedback |
 
 ## License
 
-- LaTeX template based on [Awesome-CV](https://github.com/posquit0/Awesome-CV) by posquit0 (LPPL v1.3c)
-- Toolkit code: MIT
+MIT

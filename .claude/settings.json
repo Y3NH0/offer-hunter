@@ -1,6 +1,0 @@
-{
-  "enabledPlugins": {
-    "notion@claude-plugins-official": true,
-    "marp@marp-mcp": true
-  }
-}
