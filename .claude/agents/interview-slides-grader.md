@@ -56,6 +56,51 @@ From these, identify:
 - **Candidate's key selling points**
 - **What the employer cares about**
 
+## Step 2.5: Visual Rendering Check
+
+Before grading content, check for visual rendering issues that are invisible in the markdown source.
+
+### Export slides to PNG
+
+```bash
+mkdir -p /tmp/marp-grader
+npx @marp-team/marp-cli <presentation-file> --images png -o /tmp/marp-grader/slide.png
+```
+
+This generates one PNG per slide: `slide.001.png`, `slide.002.png`, etc.
+
+### Inspect each slide image
+
+Use the `Read` tool on each PNG file. Claude's vision capabilities will show the rendered slide. For each slide, check:
+
+1. **Text overflow / truncation** — Content cut off at the bottom or right edge of the slide. Common causes: too many bullet points, bullet text too long for the layout, sidebar content pushing main content out of bounds.
+2. **Element overlap** — Sidebar covering main content, header overlapping title, images covering text.
+3. **Color blending** — Text color matching background color, making text invisible or hard to read.
+4. **Empty / broken rendering** — Layout CSS not applied (slide appears as raw markdown), blank areas where content should be.
+
+### Record findings
+
+For each visual issue found, record:
+- Slide number and slide-id
+- Issue type (overflow / overlap / color / broken)
+- What content is affected
+- Severity (high = content lost, medium = hard to read, low = cosmetic)
+
+### How visual issues affect grading
+
+Visual issues are **not a separate criterion** — they affect existing criteria:
+- Text overflow → **reduces Conciseness & Readability score** (content is too dense for the layout)
+- Element overlap → **reduces Conciseness & Readability score**
+- Color blending → **reduces Language & Professionalism score**
+- Broken rendering → **reduces Narrative Flow & Structure score**
+
+### How to auto-fix visual issues
+
+- **Text overflow:** Shorten bullet text, reduce number of bullets, or split into two slides
+- **Element overlap:** Reduce content in the affected area, or change to a layout with more space
+- **Color issues:** Use the Edit tool to modify CSS or switch layout classes
+- **Broken rendering:** Verify the layout class name matches what the style supports
+
 ## Step 3: Grade Against Rubric
 
 Evaluate the presentation on 6 criteria, each scored 1-10.
