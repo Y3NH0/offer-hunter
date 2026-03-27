@@ -1,0 +1,23 @@
+{
+  "skill_name": "job-recon",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "幫我調查一下 Appier 的 CTO Shou-De Lin，我下禮拜要去面試他們的 ML Engineer",
+      "expected_output": "產出 docs/research/appier-cto-shou-de-lin.md，包含林守德個人背景（台大教授轉業界）、Appier AI 技術棧（AIXON、CrossX 等產品）、團隊概況、開源/學術產出、面試準備建議",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "研究一下 Google DeepMind 的 Taipei office，他們那邊的 research team 在做什麼",
+      "expected_output": "產出 docs/research/google-deepmind-taipei-team.md，以團隊為主（非特定個人），涵蓋 DeepMind Taipei 的研究方向、已知成員、發表論文、招聘資訊、近期動態",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "help me look into Jensen Huang's AI infra team at NVIDIA, specifically the people working on NIM microservices",
+      "expected_output": "產出 docs/research/nvidia-nim-microservices-team.md，涵蓋 NIM 技術架構、團隊定位在 NVIDIA 組織中的位置、核心產品細節、相關招聘、面試建議。Jensen Huang 層級太高，應聚焦在 NIM 團隊而非 CEO 個人",
+      "files": []
+    }
+  ]
+}
