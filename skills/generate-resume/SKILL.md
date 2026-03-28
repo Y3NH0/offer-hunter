@@ -2,7 +2,7 @@
 name: generate-resume
 description: >
   Generate tailored CV and Cover Letter (.tex + .pdf) for a specific job listing.
-  Trigger when user says "幫我生成履歷", "投這個職缺", "generate resume for",
+  Trigger when user says "generate resume", "create CV", "apply to this job",
   or provides a job listing title/URL/JD text.
 ---
 

@@ -2,7 +2,7 @@
 name: setup-resume
 description: >
   Initialize resume workspace: set up material directory and configure LaTeX template.
-  Trigger when user says "setup resume", "初始化履歷", "設定模板",
+  Trigger when user says "setup resume", "initialize resume", "configure template",
   or when /generate-resume detects missing configuration.
 ---
 

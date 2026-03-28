@@ -8,7 +8,7 @@ Offer Hunter is a Claude Code plugin that helps job seekers generate tailored CV
 
 ## Language
 
-Respond in Traditional Chinese (繁體中文) unless the context requires English.
+Respond in the same language the user is communicating in.
 
 ## Plugin Structure
 

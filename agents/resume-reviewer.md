@@ -2,7 +2,7 @@
 name: resume-reviewer
 description: >
   Review CV and Cover Letter against a Job Description.
-  Use when the user says "review resume", "review CV", "幫我 review 履歷",
+  Use when the user says "review resume", "review CV", "check my resume",
   or after generating a resume for a job listing.
 tools:
   - Bash
@@ -79,31 +79,31 @@ For external tools (Gemini/Claude CLI), construct a review prompt that includes:
 
 ### Step 5: Format & Present Feedback
 
-Present feedback in this structure (in Traditional Chinese 繁體中文):
+Present feedback in the **same language the user is communicating in**.
 
 ```markdown
 ## CV Review ({language})
 
-### 優點
+### Strengths
 - ...
 
-### 改進建議
+### Improvements
 - ...
 
-### 缺少的關鍵字
+### Missing Keywords
 - ...
 
 ## Cover Letter Review ({language})
 
-### 優點
+### Strengths
 - ...
 
-### 改進建議
+### Improvements
 - ...
 
-## 整體評分：X/10
+## Overall Score: X/10
 
-## 下一步建議
+## Next Steps
 - ...
 ```
 
@@ -113,7 +113,7 @@ If both zh and en versions exist, review each language version separately.
 
 ## Important Notes
 
-- Present all feedback in Traditional Chinese (繁體中文)
+- Present all feedback in the same language the user is communicating in
 - When using external tools, ensure the review prompt is clear and specific
 - If an external tool fails, fall back to Claude Code (Option A) review
 - Focus on actionable suggestions — not just what's wrong, but how to fix it

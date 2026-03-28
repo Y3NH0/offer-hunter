@@ -3,20 +3,20 @@
   "evals": [
     {
       "id": 1,
-      "prompt": "幫我調查一下 Appier 的 CTO Shou-De Lin，我下禮拜要去面試他們的 ML Engineer",
-      "expected_output": "產出 docs/research/appier-cto-shou-de-lin.md，包含林守德個人背景（台大教授轉業界）、Appier AI 技術棧（AIXON、CrossX 等產品）、團隊概況、開源/學術產出、面試準備建議",
+      "prompt": "Research the CTO of Appier, Shou-De Lin. I have an ML Engineer interview with them next week.",
+      "expected_output": "Produces docs/research/appier-cto-shou-de-lin.md covering personal background (NTU professor turned industry), Appier AI tech stack (AIXON, CrossX, etc.), team overview, open source/academic output, interview prep advice",
       "files": []
     },
     {
       "id": 2,
-      "prompt": "研究一下 Google DeepMind 的 Taipei office，他們那邊的 research team 在做什麼",
-      "expected_output": "產出 docs/research/google-deepmind-taipei-team.md，以團隊為主（非特定個人），涵蓋 DeepMind Taipei 的研究方向、已知成員、發表論文、招聘資訊、近期動態",
+      "prompt": "Look into Google DeepMind's Taipei office — what is their research team working on?",
+      "expected_output": "Produces docs/research/google-deepmind-taipei-team.md focused on the team (not a specific person), covering research directions, known members, published papers, hiring signals, recent news",
       "files": []
     },
     {
       "id": 3,
-      "prompt": "help me look into Jensen Huang's AI infra team at NVIDIA, specifically the people working on NIM microservices",
-      "expected_output": "產出 docs/research/nvidia-nim-microservices-team.md，涵蓋 NIM 技術架構、團隊定位在 NVIDIA 組織中的位置、核心產品細節、相關招聘、面試建議。Jensen Huang 層級太高，應聚焦在 NIM 團隊而非 CEO 個人",
+      "prompt": "Help me look into the AI infra team at NVIDIA, specifically the people working on NIM microservices",
+      "expected_output": "Produces docs/research/nvidia-nim-microservices-team.md covering NIM technical architecture, team positioning within NVIDIA org, core product details, related hiring, interview advice. Should focus on the NIM team rather than CEO-level leadership",
       "files": []
     }
   ]
