@@ -18,6 +18,20 @@
       "prompt": "Help me look into the AI infra team at NVIDIA, specifically the people working on NIM microservices",
       "expected_output": "Produces docs/research/nvidia-nim-microservices-team.md covering NIM technical architecture, team positioning within NVIDIA org, core product details, related hiring, interview advice. Should focus on the NIM team rather than CEO-level leadership",
       "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Research John Smith at TechStartupXYZ. I'm interviewing for a backend role there.",
+      "expected_output": "Performs multi-round search, finds limited or no public information about person/company, reports what was found honestly, notes 'No public information found' for empty sections rather than fabricating, still provides general interview advice based on the role type",
+      "files": [],
+      "notes": "Edge case: obscure person/company with minimal online presence"
+    },
+    {
+      "id": 5,
+      "prompt": "Research the engineering team at ByteDance working on TikTok recommendation",
+      "expected_output": "Searches in both English and Chinese (字节跳动 推荐系统), finds information from Chinese platforms (Zhihu, Maimai, Nowcoder), handles gated content gracefully by using search snippets, includes interview experience from Chinese community platforms",
+      "files": [],
+      "notes": "Edge case: requires non-English search and handles gated platforms"
     }
   ]
 }

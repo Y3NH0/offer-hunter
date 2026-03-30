@@ -1,0 +1,45 @@
+{
+  "skill_name": "generate-resume",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Generate a resume for this job: https://careers.google.com/jobs/results/123456-software-engineer/",
+      "expected_output": "Reads .claude/resume-config.json, fetches JD via WebFetch, extracts company/position/requirements/tech stack/keywords, reads all material files, presents strategy with relevance mapping and ATS keywords, waits for approval, generates .tex files following template conventions, compiles PDFs, saves jd.md",
+      "files": [".claude/resume-config.json", "material/personal-info.md", "material/experience.md", "material/education.md", "material/skills.md"]
+    },
+    {
+      "id": 2,
+      "prompt": "Create a CV for this position:\n\nSenior ML Engineer at Stripe\nRequirements: 5+ years Python, PyTorch, distributed systems\nNice to have: Payments domain knowledge, Scala",
+      "expected_output": "Accepts raw JD text, extracts fields (company: Stripe, position: Senior ML Engineer, etc.), reads materials, presents strategy, generates tailored .tex + .pdf in docs/resumes/stripe-senior-ml-engineer/",
+      "files": [".claude/resume-config.json", "material/personal-info.md", "material/experience.md"]
+    },
+    {
+      "id": 3,
+      "prompt": "Generate resume for Appier ML Engineer --skip-strategy",
+      "expected_output": "Skips the strategy approval step, auto-determines strategy from JD vs materials, proceeds directly to template learning and generation",
+      "files": [".claude/resume-config.json", "material/personal-info.md", "material/experience.md"],
+      "notes": "Tests the --skip-strategy flag"
+    },
+    {
+      "id": 4,
+      "prompt": "Generate a resume for this job posting: https://example.com/jobs/404",
+      "expected_output": "Attempts WebFetch, URL fails or returns no JD content, informs the user that the URL couldn't be fetched, asks the user to paste the JD text directly instead of silently failing",
+      "files": [".claude/resume-config.json"],
+      "notes": "Edge case: WebFetch failure"
+    },
+    {
+      "id": 5,
+      "prompt": "Create a CV for Senior Engineer at Google",
+      "expected_output": "Detects that .claude/resume-config.json is missing, tells the user to run /setup-resume first, does NOT attempt to generate without configuration",
+      "files": [],
+      "notes": "Edge case: missing configuration"
+    },
+    {
+      "id": 6,
+      "prompt": "Generate resume for Stripe payments engineer --cv-only",
+      "expected_output": "Generates only the CV .tex file, skips cover letter generation entirely, compilation produces only CV PDF",
+      "files": [".claude/resume-config.json", "material/personal-info.md", "material/experience.md"],
+      "notes": "Tests the --cv-only flag"
+    }
+  ]
+}
