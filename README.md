@@ -1,104 +1,104 @@
 # Offer Hunter
 
-A Claude Code plugin for job seekers: generate tailored resumes, get AI-powered reviews, and research your interview targets.
+> Stop sending the same resume everywhere. Start sending the *right* one.
 
-## Features
+Offer Hunter is a [Claude Code](https://claude.ai/code) plugin that turns job descriptions into tailored, professional resumes — automatically. Bring your own LaTeX template, point it at a job listing, and get a CV + Cover Letter that actually matches what the company is looking for.
 
-- **JD-tailored generation**: Automatically customize your CV and Cover Letter for each job application
-- **Template-agnostic**: Bring your own LaTeX template — from Overleaf, GitHub, or local files
-- **Bilingual support**: Chinese and English output (if your materials include both)
-- **AI-powered review**: Get resume feedback via Claude Code, Gemini CLI, or a specified model
-- **Job recon**: Deep research on companies, teams, and interviewers before your interview
-- **Strategy phase**: Analyze JD vs your experience before generating — or skip and go direct
+## What It Does
+
+```
+You + Job Description + Your Template = Tailored Resume in seconds
+```
+
+**Generate** — Paste a JD or URL. Offer Hunter reads your experience, maps it to the job requirements, and generates a tailored CV + Cover Letter in LaTeX.
+
+**Review** — Get your resume scored against the JD by AI. Catch missing keywords, weak bullet points, and alignment gaps before you hit send.
+
+**Recon** — Research your interview target: the hiring manager's background, the team's tech stack, real interview experiences from Glassdoor/Blind/Reddit, and what to prepare for.
 
 ## Quick Start
+
+```bash
+/plugin install offer-hunter     # install the plugin
+/setup-resume                    # configure your template + materials
+/generate-resume                 # generate your first resume
+```
 
 ### Prerequisites
 
 - [Claude Code](https://claude.ai/code) CLI
 - A LaTeX compiler (XeLaTeX, pdfLaTeX, or LuaLaTeX)
-- A LaTeX resume template (your own, from Overleaf, or from GitHub)
-
-### Install
-
-```bash
-# In Claude Code, install the plugin
-/plugin install offer-hunter
-```
+- A LaTeX resume template (yours, from [Overleaf](https://www.overleaf.com/latex/templates/tagged/cv), or GitHub)
 
 ### Setup
 
-Run the setup skill in your project:
+`/setup-resume` walks you through:
+
+1. **Materials** — creates a `material/` directory with templates for your experience, education, skills, and projects
+2. **Template** — connects your LaTeX template (local path, Overleaf clone, or GitHub repo)
+3. **Config** — saves everything to `.claude/resume-config.json` so you only set up once
+
+### Generate
 
 ```
-/setup-resume
+/generate-resume "Senior ML Engineer at Stripe"
 ```
 
-This will:
-1. Create a `material/` directory with example files for your resume content
-2. Configure your LaTeX template (local path, Overleaf, or GitHub)
-3. Set up output directories
+What happens under the hood:
 
-### Generate a Resume
+1. **Reads the JD** — extracts requirements, keywords, and themes
+2. **Reads your materials** — all your experiences, projects, skills
+3. **Strategizes** — maps your experience to the JD, picks what to emphasize, what to cut (you approve before it generates)
+4. **Generates** — creates `.tex` files following your template's exact structure and commands
+5. **Compiles** — runs LaTeX to produce PDFs
 
-```
-/generate-resume "AI Engineer at Company X"
-```
+You can also feed a URL or paste raw JD text. Add `--skip-strategy` to go straight to generation.
 
-Or provide a JD URL:
-```
-/generate-resume https://example.com/job-posting
-```
+### Review
 
-Or paste JD text directly:
-```
-/generate-resume --skip-strategy
-> Paste your JD here...
-```
-
-### Review a Resume
-
-After generating, get AI feedback:
 ```
 @resume-reviewer
 ```
 
-### Research a Job Target
+Scores your resume on 7 dimensions: JD alignment, ATS optimization, impact metrics, relevance, conciseness, cover letter fit, and language quality. Choose your reviewer: Claude Code (default), Gemini CLI, or any Claude model.
 
-Before an interview, research the company/team/interviewer:
+### Recon
+
 ```
-/job-recon "Research the AI team at Company X"
+/job-recon "Look into the Platform team at Datadog"
 ```
+
+Produces a structured intelligence report with: key people's backgrounds, team tech stack, open source output, recent company news, real interview experiences from community platforms, and specific preparation advice.
 
 ## How It Works
 
 ```
-material/           # Your resume content (single source of truth)
-├── personal-info.md
-├── experience.md
-├── education.md
-├── skills.md
-└── projects/*.md
+material/               # Your content (single source of truth)
+├── experience.md       #   work history
+├── education.md        #   degrees & research
+├── skills.md           #   technical skills
+└── projects/*.md       #   project writeups
 
-your-template/      # Your LaTeX template (configured during setup)
-├── cv.tex
-├── cover-letter.tex
-└── ...
+your-template/          # Your LaTeX template
+├── cv.tex              #   (configured during /setup-resume)
+└── cover-letter.tex
 
-docs/resumes/       # Generated output (per job application)
-└── company-position/
+docs/resumes/           # Output (one folder per application)
+└── stripe-sr-ml-eng/
     ├── cv.tex + cv.pdf
     └── cover-letter.tex + cover-letter.pdf
 ```
 
-## Plugin Skills
+Write your materials once. Generate a different, tailored resume for every application.
 
-| Skill | Command | Description |
-|-------|---------|-------------|
-| Setup | `/setup-resume` | Initialize workspace and configure template |
-| Generate | `/generate-resume` | Create tailored CV & Cover Letter |
-| Recon | `/job-recon` | Research companies, teams, and people |
-| Review | `@resume-reviewer` | AI-powered resume feedback |
+## Commands
+
+| Command | What it does |
+|---------|-------------|
+| `/setup-resume` | One-time setup: template + materials |
+| `/generate-resume` | Generate tailored CV & Cover Letter |
+| `/job-recon` | Deep research on a company/team/person |
+| `@resume-reviewer` | AI-powered resume review & scoring |
 
 ## License
 

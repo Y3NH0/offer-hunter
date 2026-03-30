@@ -1,104 +1,104 @@
 # Offer Hunter
 
-Claude Code 求職外掛：自動生成客製化履歷、AI 審稿、面試目標深度調查。
+> 別再到處投一樣的履歷了。投*對的*那份。
 
-## 功能特色
+Offer Hunter 是一個 [Claude Code](https://claude.ai/code) 外掛，把職缺描述變成量身打造的專業履歷 — 全自動。帶上你自己的 LaTeX 模板，指向一個職缺，就能得到真正符合公司需求的 CV + Cover Letter。
 
-- **JD 客製化生成**：自動根據每個職缺調整你的 CV 和求職信
-- **模板無關**：自帶 LaTeX 模板 — 從 Overleaf、GitHub 或本地檔案皆可
-- **雙語支援**：中文和英文輸出（若素材包含雙語版本）
-- **AI 審稿**：透過 Claude Code、Gemini CLI 或指定模型取得履歷回饋
-- **求職偵察**：面試前深度調查公司、團隊、面試官
-- **策略分析階段**：生成前先分析 JD 與個人經歷的匹配度，也可跳過直接生成
+## 它能做什麼
+
+```
+你 + 職缺描述 + 你的模板 = 幾秒內產出客製化履歷
+```
+
+**生成** — 貼上 JD 或網址。Offer Hunter 讀取你的經歷，對應職缺需求，生成客製化的 CV + Cover Letter（LaTeX 格式）。
+
+**審閱** — 讓 AI 根據 JD 幫你的履歷打分。在送出前抓出遺漏的關鍵字、薄弱的條列項、和對齊落差。
+
+**偵察** — 調查你的面試目標：主管的背景、團隊的技術棧、來自 Glassdoor/PTT/Dcard 的真實面試經驗、以及你該準備什麼。
 
 ## 快速開始
+
+```bash
+/plugin install offer-hunter     # 安裝外掛
+/setup-resume                    # 設定模板 + 素材
+/generate-resume                 # 生成你的第一份履歷
+```
 
 ### 前置需求
 
 - [Claude Code](https://claude.ai/code) CLI
 - LaTeX 編譯器（XeLaTeX、pdfLaTeX 或 LuaLaTeX）
-- LaTeX 履歷模板（自己的、來自 Overleaf 或 GitHub）
-
-### 安裝
-
-```bash
-# 在 Claude Code 中安裝外掛
-/plugin install offer-hunter
-```
+- LaTeX 履歷模板（自己的、來自 [Overleaf](https://www.overleaf.com/latex/templates/tagged/cv) 或 GitHub）
 
 ### 初始設定
 
-在你的專案中執行 setup skill：
+`/setup-resume` 會引導你完成：
 
-```
-/setup-resume
-```
-
-這會：
-1. 建立 `material/` 目錄，包含履歷素材的範例檔案
-2. 設定你的 LaTeX 模板來源（本地路徑、Overleaf 或 GitHub）
-3. 建立輸出目錄
+1. **素材** — 建立 `material/` 目錄，包含經歷、學歷、技能、專案的範本檔案
+2. **模板** — 連接你的 LaTeX 模板（本地路徑、Overleaf clone 或 GitHub repo）
+3. **設定** — 儲存到 `.claude/resume-config.json`，只需設定一次
 
 ### 生成履歷
 
 ```
-/generate-resume "AI Engineer at Company X"
+/generate-resume "Stripe Senior ML Engineer"
 ```
 
-或提供 JD 網址：
-```
-/generate-resume https://example.com/job-posting
-```
+背後做了什麼：
 
-或直接貼上 JD 文字：
-```
-/generate-resume --skip-strategy
-> 在此貼上你的 JD...
-```
+1. **讀取 JD** — 提取需求、關鍵字、主題
+2. **讀取你的素材** — 所有經歷、專案、技能
+3. **制定策略** — 對應你的經歷到 JD，決定強調什麼、刪減什麼（你核准後才生成）
+4. **生成** — 依照你模板的結構和指令產出 `.tex` 檔案
+5. **編譯** — 跑 LaTeX 產出 PDF
+
+你也可以餵 URL 或直接貼 JD 文字。加 `--skip-strategy` 跳過策略階段直接生成。
 
 ### 審閱履歷
 
-生成後，取得 AI 回饋：
 ```
 @resume-reviewer
 ```
 
-### 調查求職目標
+從 7 個維度評分：JD 對齊度、ATS 最佳化、影響力指標、相關性、精簡度、Cover Letter 契合度、語言品質。可選擇 Claude Code（預設）、Gemini CLI 或任何 Claude 模型。
 
-面試前，調查公司/團隊/面試官：
+### 求職偵察
+
 ```
-/job-recon "調查 Company X 的 AI 團隊"
+/job-recon "調查 Datadog 的 Platform 團隊"
 ```
+
+產出結構化情報報告：關鍵人物背景、團隊技術棧、開源產出、近期公司動態、來自社群平台的真實面試經驗、以及具體的準備建議。
 
 ## 運作方式
 
 ```
-material/           # 你的履歷素材（唯一資料來源）
-├── personal-info.md
-├── experience.md
-├── education.md
-├── skills.md
-└── projects/*.md
+material/               # 你的內容（唯一資料來源）
+├── experience.md       #   工作經歷
+├── education.md        #   學歷 & 研究
+├── skills.md           #   技術技能
+└── projects/*.md       #   專案描述
 
-your-template/      # 你的 LaTeX 模板（setup 時設定）
-├── cv.tex
-├── cover-letter.tex
-└── ...
+your-template/          # 你的 LaTeX 模板
+├── cv.tex              #   （/setup-resume 時設定）
+└── cover-letter.tex
 
-docs/resumes/       # 各職缺生成的履歷輸出
-└── company-position/
+docs/resumes/           # 輸出（每個申請一個資料夾）
+└── stripe-sr-ml-eng/
     ├── cv.tex + cv.pdf
     └── cover-letter.tex + cover-letter.pdf
 ```
 
-## 外掛技能
+素材寫一次。每次申請生成不同的、量身打造的履歷。
 
-| 技能 | 指令 | 說明 |
-|------|------|------|
-| 初始設定 | `/setup-resume` | 初始化工作區並設定模板 |
-| 生成履歷 | `/generate-resume` | 建立客製化 CV 和求職信 |
-| 求職偵察 | `/job-recon` | 調查公司、團隊和相關人物 |
-| 履歷審閱 | `@resume-reviewer` | AI 驅動的履歷回饋 |
+## 指令
+
+| 指令 | 功能 |
+|------|------|
+| `/setup-resume` | 一次性設定：模板 + 素材 |
+| `/generate-resume` | 生成客製化 CV & Cover Letter |
+| `/job-recon` | 深度調查公司/團隊/人物 |
+| `@resume-reviewer` | AI 履歷審閱 & 評分 |
 
 ## 授權
 
