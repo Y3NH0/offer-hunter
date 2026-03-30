@@ -84,6 +84,7 @@ Generates a self-introduction slide deck in Marp format: narrative arc from your
 
 ```
 material/               # Your content (single source of truth)
+├── personal-info.md    #   name, contact, links
 ├── experience.md       #   work history
 ├── education.md        #   degrees & research
 ├── skills.md           #   technical skills
