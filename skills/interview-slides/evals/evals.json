@@ -1,0 +1,31 @@
+{
+  "skill_name": "interview-slides",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Create self-introduction slides for my Google SWE interview. 3 minutes.",
+      "expected_output": "Reads materials, checks for existing JD/recon in docs/, generates 5-7 Marp slides with speaker notes, saves to docs/slides/google-swe-slides.md, provides export instructions",
+      "files": ["material/personal-info.md", "material/experience.md", "material/skills.md"]
+    },
+    {
+      "id": 2,
+      "prompt": "I need a 1-minute self-intro presentation for Stripe. Keep it minimal.",
+      "expected_output": "Generates 3-4 concise slides (title + 1 key experience + why Stripe), saves to docs/slides/stripe-slides.md, respects the tight time constraint",
+      "files": ["material/personal-info.md", "material/experience.md"]
+    },
+    {
+      "id": 3,
+      "prompt": "Generate interview slides in Chinese for my TSMC interview.",
+      "expected_output": "Generates slides in Traditional Chinese, uses zh content from bilingual materials, saves to docs/slides/tsmc-slides.md",
+      "files": ["material/personal-info.md", "material/experience.md"],
+      "notes": "Tests non-English output"
+    },
+    {
+      "id": 4,
+      "prompt": "Make slides for my Appier ML Engineer interview. I already did /job-recon and /generate-resume for them.",
+      "expected_output": "Finds and incorporates existing docs/research/appier-*.md recon report and docs/resumes/appier-*/jd.md, tailors slides to match JD keywords and recon insights",
+      "files": ["material/personal-info.md", "material/experience.md", "docs/research/appier-ml-engineer.md", "docs/resumes/appier-ml-engineer/jd.md"],
+      "notes": "Tests integration with existing recon and resume data"
+    }
+  ]
+}
