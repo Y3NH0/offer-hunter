@@ -41,7 +41,9 @@ Determine the scope based on input. Always go broad-to-deep: establish the big p
 
 ### Step 2: Multi-Round Search
 
-Use WebSearch for **at least 3-4 rounds**, each with different angles and keyword combinations. Search in **both English and the target company's local language** (e.g., Chinese for Taiwan/China companies, Japanese for Japan companies, etc.).
+Use WebSearch for **5 rounds**, each with different angles and keyword combinations. Search in **both English and the target company's local language** (e.g., Chinese for Taiwan/China companies, Japanese for Japan companies, etc.).
+
+Run **multiple WebSearch queries in parallel** within each round — do not serialize them.
 
 **Round 1: Establish Profile**
 - `"person name" "company name"` — find the right person
@@ -72,32 +74,42 @@ Search for first-hand interview reports on platforms relevant to the target regi
 
 Search queries should combine the company name with interview-related terms in the appropriate language. The goal is to collect **real interviewees' experiences**: interview process (rounds, format), question types, company culture impressions, and offer negotiation details.
 
+**If a platform is inaccessible** (gated content, login wall, 403): Extract what you can from search result snippets. Note in the report that full access was not available. Do not skip the platform entirely — snippets from search results often contain useful summaries.
+
 **Round 5: Follow-Up & Verification**
 - Deep-dive on key leads discovered in earlier rounds (e.g., found an open-source project → check its GitHub/HuggingFace page)
-- Use WebFetch to retrieve full content of important pages (model cards, GitHub READMEs, detailed JD pages, etc.)
-
-Run **multiple WebSearch queries in parallel** within each round — do not serialize them.
+- Verify key claims by cross-referencing multiple sources
+- Fill any remaining gaps from the research dimensions
 
 ### Step 3: Deep Fetch (WebFetch)
 
-Use WebFetch to retrieve full content from pages such as:
+Use WebFetch to retrieve full content from high-value pages such as:
 
 - HuggingFace model cards / org pages
 - GitHub repository READMEs
 - Company engineering blog posts
 - Detailed job description pages
+- Conference talk abstracts or slides pages
 
-If WebFetch fails (403, redirect), try alternative URLs or extract information from search result snippets.
+If WebFetch fails (403, redirect, timeout):
+1. Try the Google Cache or web archive version: `webcache.googleusercontent.com/search?q=cache:{url}`
+2. Extract information from search result snippets already collected
+3. Note in the report that the full page was inaccessible
 
 ### Step 4: Compile Output
 
 Organize all findings into a structured `.md` file and save to `docs/research/`.
 
+**Before writing, review all collected information for:**
+- **Conflicting facts** — if sources disagree (e.g., different titles for the same person), note both and indicate which source is more recent/authoritative
+- **Freshness** — flag any information that appears to be more than 1 year old with a note like "(as of {year})"
+- **Confidence** — clearly distinguish confirmed facts from inferences
+
 ## Output
 
 ### File Location
 
-`docs/research/<company>-<topic>.md`
+`docs/research/{company}-{topic}.md`
 
 Examples:
 - `docs/research/google-deepmind-taipei-team.md`
@@ -132,6 +144,7 @@ Follow this structure strictly. Sections with no findings should note "No public
 
 ### Leadership Style (Inferred)
 - Inferences from public info (career transitions, team culture signals, etc.)
+- *Label all inferences explicitly*
 
 ---
 
@@ -189,6 +202,7 @@ Compiled from community platforms (Glassdoor, Blind, Reddit, regional platforms,
 
 ## 7. Sources
 - All referenced URLs as titled markdown links
+- Note any sources that were inaccessible (with reason)
 ```
 
 If the research target is a team rather than a specific person, omit the personal background table in section 1 and focus on team structure and technical analysis.
@@ -200,6 +214,15 @@ If the research target is a team rather than a specific person, omit the persona
 - Be precise with names, titles, and company names — do not confuse people with similar names
 - Search in both English and the target's local language
 - Interview preparation advice should be specific and actionable, not generic
+- Flag outdated information with the year/date it was current
+- When sources conflict, present both versions with context on which is more recent
+
+## Privacy Guidelines
+
+- Only include information that is **publicly available** (published by the person themselves, on company pages, or in public forums)
+- Do not include personal contact information beyond what's on official company or LinkedIn pages
+- Do not include information from private social media accounts
+- If you find sensitive personal information (home address, personal phone, family details), do not include it in the report
 
 ## Prerequisites
 
