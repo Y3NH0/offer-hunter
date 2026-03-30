@@ -1,13 +1,27 @@
 # Project Name
 
-*Start Date - End Date | Context (e.g., Company Project / Side Project / Thesis)*
+*Start Date - End Date | Context (e.g., Company Project / Side Project / Thesis / Open Source)*
 
 - **Tech Stack:** Tool1, Tool2, Tool3
+- **Role:** Your role (e.g., Lead Developer, Contributor, Solo Developer)
+- **Team Size:** N people (if applicable)
+- **Links:** [GitHub](https://github.com/...) | [Demo](https://...) | [Paper](https://...) (if applicable)
 
 ## Contributions (zh)
 
 - 用中文描述你在這個專案的貢獻
+- 每一點加入量化數據
 
 ## Contributions (en)
 
 - Describe your contributions in English
+- Include metrics and impact where possible
+
+<!--
+Tips:
+- Create one .md file per project (e.g., projects/my-cool-project.md)
+- Include 3-5 projects most relevant to your target roles
+- Focus on YOUR contributions, not just what the project does
+- Include links so reviewers can verify and explore
+- "Built X that does Y, achieving Z" is the ideal bullet format
+-->

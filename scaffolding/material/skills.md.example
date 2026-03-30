@@ -1,19 +1,43 @@
 # Skills
 
-## Category 1 (e.g., AI Agent)
+<!-- Organize skills into categories relevant to your field.
+     List your strongest/most relevant skills first in each category. -->
 
-- **Frameworks:** Tool1, Tool2
-- **Core Competencies:**
-    - Skill 1
-    - Skill 2
+## Category 1 (e.g., Machine Learning)
 
-## Category 2 (e.g., Machine Learning)
+- **Frameworks:** PyTorch, TensorFlow, scikit-learn
+- **Specializations:**
+    - Natural Language Processing
+    - Computer Vision
+    - Reinforcement Learning
 
-- **Toolkits:** PyTorch, etc.
-- **Core Competencies:**
-    - Skill 1
+## Category 2 (e.g., Backend Development)
 
-## Programming
+- **Frameworks:** FastAPI, Django, Express.js
+- **Databases:** PostgreSQL, Redis, MongoDB
+- **Cloud:** AWS (EC2, S3, Lambda), GCP (BigQuery, Vertex AI)
 
-- **Languages:** Python, etc.
-- **Tools:** git, docker, etc.
+## Programming Languages
+
+- **Primary:** Python, TypeScript
+- **Proficient:** Go, Rust, Java
+- **Familiar:** C++, Scala
+
+## Tools & Platforms
+
+- **DevOps:** Docker, Kubernetes, Terraform, GitHub Actions
+- **Monitoring:** Grafana, Prometheus, Datadog
+- **Other:** Git, Linux, Vim
+
+## Certifications (optional)
+
+- AWS Certified Solutions Architect (2024)
+- Google Cloud Professional ML Engineer (2023)
+
+<!--
+Tips:
+- Organize categories by relevance to your target roles
+- "Primary/Proficient/Familiar" helps recruiters gauge depth
+- Only include tools you can confidently discuss in an interview
+- Certifications: include only if relevant and current
+-->

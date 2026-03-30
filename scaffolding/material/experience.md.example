@@ -1,17 +1,44 @@
 # Experience
 
+<!-- List positions from most recent to oldest. Aim for 3-5 bullet points per role.
+     Start each bullet with an action verb. Include metrics where possible. -->
+
 ## Your Title @ Company Name
 
 - **Period:** Jan 2024 - Present
 - **Location:** City, Country
-- **Tech Stack:** List your tech stack here
+- **Tech Stack:** Python, PyTorch, AWS, Docker
 
 ### Contributions (zh)
 
+- 主導開發了 XX 系統，將處理效率提升 40%
 - 用中文描述你的工作貢獻
-- 每一點用動詞開頭
+- 每一點用動詞開頭，盡量加入量化數據
 
 ### Contributions (en)
 
+- Led development of XX system, improving processing efficiency by 40%
 - Describe your work contributions in English
-- Start each bullet with an action verb
+- Start each bullet with an action verb and quantify results where possible
+
+## Previous Title @ Previous Company
+
+- **Period:** Jun 2022 - Dec 2023
+- **Location:** City, Country
+- **Tech Stack:** JavaScript, React, Node.js, PostgreSQL
+
+### Contributions (zh)
+
+- 描述你的貢獻
+
+### Contributions (en)
+
+- Describe your contributions
+
+<!--
+Tips:
+- "Increased X by Y%" is stronger than "Worked on X"
+- "Reduced latency from 500ms to 50ms" is stronger than "Improved performance"
+- Include team size context when relevant: "Led a team of 5 engineers to..."
+- If you can't quantify, describe scope: "Serving 100K+ daily active users"
+-->
