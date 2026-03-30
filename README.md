@@ -16,6 +16,8 @@ You + Job Description + Your Template = Tailored Resume in seconds
 
 **Recon** — Research your interview target: the hiring manager's background, the team's tech stack, real interview experiences from Glassdoor/Blind/Reddit, and what to prepare for.
 
+**Slides** — Generate Marp-format interview presentation slides for self-introductions. Tailored to the role, timed to your slot, with speaker notes.
+
 ## Quick Start
 
 ```bash
@@ -70,6 +72,14 @@ Scores your resume on 7 dimensions: JD alignment, ATS optimization, impact metri
 
 Produces a structured intelligence report with: key people's backgrounds, team tech stack, open source output, recent company news, real interview experiences from community platforms, and specific preparation advice.
 
+### Slides
+
+```
+/interview-slides "Google SWE interview, 3 minutes"
+```
+
+Generates a self-introduction slide deck in Marp format: narrative arc from your background to why this role, with speaker notes and timing guidance. Export to PDF/PPTX with Marp CLI or VS Code.
+
 ## How It Works
 
 ```
@@ -95,10 +105,11 @@ Write your materials once. Generate a different, tailored resume for every appli
 
 | Command | What it does |
 |---------|-------------|
-| `/setup-resume` | One-time setup: template + materials |
-| `/generate-resume` | Generate tailored CV & Cover Letter |
+| `/setup-resume` | One-time setup: template + materials (with guided collection) |
+| `/generate-resume` | Generate tailored CV & Cover Letter (`--skip-strategy`, `--cv-only`, `--cover-letter-only`) |
 | `/job-recon` | Deep research on a company/team/person |
-| `@resume-reviewer` | AI-powered resume review & scoring |
+| `/interview-slides` | Generate Marp presentation slides for interviews |
+| `@resume-reviewer` | AI-powered resume review & scoring (7-dimension rubric) |
 
 ## License
 

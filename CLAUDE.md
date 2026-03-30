@@ -19,11 +19,13 @@ Respond in the same language the user is communicating in.
 ├── skills/
 │   ├── setup-resume/        # Initialize workspace + configure template
 │   ├── generate-resume/     # Generate tailored CV & Cover Letter
-│   └── job-recon/           # Deep research on job targets
+│   ├── job-recon/           # Deep research on job targets
+│   └── interview-slides/    # Generate Marp interview presentation slides
 ├── agents/
-│   └── resume-reviewer.md   # AI-powered resume review
+│   └── resume-reviewer.md   # AI-powered resume review (with scoring rubric)
 ├── scaffolding/
 │   └── material/            # .example files for user setup
+├── skill_development_reports/ # Development assessment & improvement logs
 ├── LICENSE
 ├── README.md
 └── README_zhtw.md
@@ -40,7 +42,8 @@ Respond in the same language the user is communicating in.
 ## Workflow
 
 1. User installs the plugin
-2. `/setup-resume` — configures template source and material directory
-3. `/generate-resume` — generates tailored resume for a job listing
-4. `@resume-reviewer` — gets AI feedback on the generated resume
+2. `/setup-resume` — configures template source, material directory, and guides content collection
+3. `/generate-resume` — generates tailored resume for a job listing (with strategy approval)
+4. `@resume-reviewer` — gets scored AI feedback on the generated resume (7-dimension rubric)
 5. `/job-recon` — researches a company/team/person before an interview
+6. `/interview-slides` — generates Marp presentation slides for interview self-introductions
