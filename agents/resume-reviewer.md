@@ -4,11 +4,7 @@ description: >
   Review CV and Cover Letter against a Job Description.
   Use when the user says "review resume", "review CV", "check my resume",
   or after generating a resume for a job listing.
-tools:
-  - Bash
-  - Read
-  - Glob
-  - Grep
+tools: Bash, Read, Glob, Grep
 ---
 
 # Resume & Cover Letter Reviewer

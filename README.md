@@ -21,7 +21,14 @@ You + Job Description + Your Template = Tailored Resume in seconds
 ## Quick Start
 
 ```bash
-/plugin install offer-hunter     # install the plugin
+# Option 1: Install from GitHub
+claude plugin install https://github.com/yenhochen/offer-hunter
+
+# Option 2: Clone and install locally
+git clone https://github.com/yenhochen/offer-hunter.git
+claude plugin install ./offer-hunter
+
+# Then in your project:
 /setup-resume                    # configure your template + materials
 /generate-resume                 # generate your first resume
 ```
