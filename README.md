@@ -22,10 +22,10 @@ You + Job Description + Your Template = Tailored Resume in seconds
 
 ```bash
 # Option 1: Install from GitHub
-claude plugin install https://github.com/yenhochen/offer-hunter
+claude plugin install https://github.com/Y3NH0/offer-hunter
 
 # Option 2: Clone and install locally
-git clone https://github.com/yenhochen/offer-hunter.git
+git clone https://github.com/Y3NH0/offer-hunter.git
 claude plugin install ./offer-hunter
 
 # Then in your project:
