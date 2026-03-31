@@ -1,114 +1,124 @@
-# Resume Toolkit
+# Offer Hunter
 
-Generate tailored, professional CVs and Cover Letters from job descriptions — powered by Claude Code + LaTeX.
+> Stop sending the same resume everywhere. Start sending the *right* one.
 
-## Features
+Offer Hunter is a [Claude Code](https://claude.ai/code) plugin that turns job descriptions into tailored, professional resumes — automatically. Bring your own LaTeX template, point it at a job listing, and get a CV + Cover Letter that actually matches what the company is looking for.
 
-- **JD-tailored generation**: Automatically customize your resume for each job application
-- **Bilingual support**: Chinese (繁體中文) and English output
-- **Professional LaTeX template**: Custom Awesome-CV with banner header, accent colors, and CJK support
-- **Notion integration**: Track job listings and fetch JD content directly
-- **AI-powered review**: Get feedback on your resume using Gemini CLI
-- **Strategy phase**: Analyze JD vs your experience before generating — or skip and go direct
+## What It Does
+
+```
+You + Job Description + Your Template = Tailored Resume in seconds
+```
+
+**Generate** — Paste a JD or URL. Offer Hunter reads your experience, maps it to the job requirements, and generates a tailored CV + Cover Letter in LaTeX.
+
+**Review** — Get your resume scored against the JD by AI. Catch missing keywords, weak bullet points, and alignment gaps before you hit send.
+
+**Recon** — Research your interview target: the hiring manager's background, the team's tech stack, real interview experiences from Glassdoor/Blind/Reddit, and what to prepare for.
+
+**Slides** — Generate Marp-format interview presentation slides for self-introductions. Tailored to the role, timed to your slot, with speaker notes.
 
 ## Quick Start
+
+```bash
+# Option 1: Install from GitHub
+claude plugin install https://github.com/yenhochen/offer-hunter
+
+# Option 2: Clone and install locally
+git clone https://github.com/yenhochen/offer-hunter.git
+claude plugin install ./offer-hunter
+
+# Then in your project:
+/setup-resume                    # configure your template + materials
+/generate-resume                 # generate your first resume
+```
 
 ### Prerequisites
 
 - [Claude Code](https://claude.ai/code) CLI
-- XeLaTeX (via MacTeX or TeX Live)
-- CJK fonts (PingFang TC on macOS, or Noto Sans TC)
-- (Optional) Gemini CLI for resume review
-- (Optional) Notion MCP plugin for job tracking
+- A LaTeX compiler (XeLaTeX, pdfLaTeX, or LuaLaTeX)
+- A LaTeX resume template (yours, from [Overleaf](https://www.overleaf.com/latex/templates/tagged/cv), or GitHub)
 
 ### Setup
 
-1. **Clone and set up materials**
-   ```bash
-   git clone <this-repo>
-   cd resume-toolkit
-   ```
+`/setup-resume` walks you through:
 
-2. **Copy example files and fill in your content**
-   ```bash
-   cp material/personal-info.md.example material/personal-info.md
-   cp material/experience.md.example material/experience.md
-   cp material/education.md.example material/education.md
-   cp material/skills.md.example material/skills.md
-   # Edit each file with your actual content
-   ```
+1. **Materials** — creates a `material/` directory with templates for your experience, education, skills, and projects
+2. **Template** — connects your LaTeX template (local path, Overleaf clone, or GitHub repo)
+3. **Config** — saves everything to `.claude/resume-config.json` so you only set up once
 
-3. **Install XeLaTeX** (if not already)
-   ```bash
-   # macOS
-   brew install --cask mactex-no-gui
-   ```
+### Generate
 
-4. **Test the template**
-   ```bash
-   cd templates/awesome-cv
-   xelatex cv.tex
-   ```
-
-### Generate a Resume
-
-Use the Claude Code skill:
 ```
-/generate-resume "AI Engineer at Company X"
+/generate-resume "Senior ML Engineer at Stripe"
 ```
 
-Or provide JD text directly:
-```
-/generate-resume --skip-strategy
-> Paste your JD here...
-```
+What happens under the hood:
 
-### Review a Resume
+1. **Reads the JD** — extracts requirements, keywords, and themes
+2. **Reads your materials** — all your experiences, projects, skills
+3. **Strategizes** — maps your experience to the JD, picks what to emphasize, what to cut (you approve before it generates)
+4. **Generates** — creates `.tex` files following your template's exact structure and commands
+5. **Compiles** — runs LaTeX to produce PDFs
 
-After generating, get AI feedback:
+You can also feed a URL or paste raw JD text. Add `--skip-strategy` to go straight to generation.
+
+### Review
+
 ```
 @resume-reviewer
 ```
 
-## Project Structure
+Scores your resume on 7 dimensions: JD alignment, ATS optimization, impact metrics, relevance, conciseness, cover letter fit, and language quality. Choose your reviewer: Claude Code (default), Gemini CLI, or any Claude model.
+
+### Recon
 
 ```
-material/           # Your resume content (single source of truth)
-├── *.md.example    # Template files — copy and fill in
-templates/          # LaTeX templates
-├── awesome-cv/     # Custom Awesome-CV with banner header
-.claude/
-├── skills/         # generate-resume skill
-├── agents/         # resume-reviewer agent (Gemini-powered)
-docs/resumes/       # Generated output per job application
+/job-recon "Look into the Platform team at Datadog"
 ```
 
-## Template Features
+Produces a structured intelligence report with: key people's backgrounds, team tech stack, open source output, recent company news, real interview experiences from community platforms, and specific preparation advice.
 
-- Full-width accent color banner header with photo
-- Tag-style position label
-- Two-line entry format (Organization + Position)
-- Bold subtitles on bullet points
-- Section-first-char accent coloring
-- `\cvproject` command for simplified project entries
-- `\cvskill` for left-aligned skill categories
-- PingFang TC / Noto Sans TC CJK support
+### Slides
 
-## Customization
-
-### Accent Color
-Edit `templates/awesome-cv/preamble-common.tex`:
-```latex
-\definecolor{awesome}{HTML}{1A7A7A}  % Change to your preferred color
+```
+/interview-slides "Google SWE interview, 3 minutes"
 ```
 
-### Font
-Edit `templates/awesome-cv/awesome-cv.cls` font section to use your preferred fonts.
+Generates a self-introduction slide deck in Marp format: narrative arc from your background to why this role, with speaker notes and timing guidance. Export to PDF/PPTX with Marp CLI or VS Code.
 
-### Section Order
-Edit the `\input{sections/...}` order in `cv.tex`.
+## How It Works
+
+```
+material/               # Your content (single source of truth)
+├── personal-info.md    #   name, contact, links
+├── experience.md       #   work history
+├── education.md        #   degrees & research
+├── skills.md           #   technical skills
+└── projects/*.md       #   project writeups
+
+your-template/          # Your LaTeX template
+├── cv.tex              #   (configured during /setup-resume)
+└── cover-letter.tex
+
+docs/resumes/           # Output (one folder per application)
+└── stripe-sr-ml-eng/
+    ├── cv.tex + cv.pdf
+    └── cover-letter.tex + cover-letter.pdf
+```
+
+Write your materials once. Generate a different, tailored resume for every application.
+
+## Commands
+
+| Command | What it does |
+|---------|-------------|
+| `/setup-resume` | One-time setup: template + materials (with guided collection) |
+| `/generate-resume` | Generate tailored CV & Cover Letter (`--skip-strategy`, `--cv-only`, `--cover-letter-only`) |
+| `/job-recon` | Deep research on a company/team/person |
+| `/interview-slides` | Generate Marp presentation slides for interviews |
+| `@resume-reviewer` | AI-powered resume review & scoring (7-dimension rubric) |
 
 ## License
 
-- LaTeX template based on [Awesome-CV](https://github.com/posquit0/Awesome-CV) by posquit0 (LPPL v1.3c)
-- Toolkit code: MIT
+MIT

@@ -1,0 +1,38 @@
+{
+  "skill_name": "setup-resume",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Set up my resume workspace. I have a LaTeX template in ~/templates/awesome-cv/",
+      "expected_output": "Creates material/ directory with all .md files from scaffolding, reads and analyzes the template at ~/templates/awesome-cv/, detects .tex/.cls files and compiler, saves config to .claude/resume-config.json, creates docs/resumes/, suggests .gitignore entries",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Initialize my resume. I want to clone my Overleaf template: https://www.overleaf.com/project/abc123def456",
+      "expected_output": "Creates material/ directory, converts Overleaf URL to git URL (https://git.overleaf.com/abc123def456), clones into templates/, analyzes the cloned template structure, saves config with source: overleaf and source_url",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "/setup-resume",
+      "expected_output": "Checks for existing .claude/resume-config.json (fresh setup if missing), creates material/ with scaffolding files, prompts for template source (local/Overleaf/GitHub), guides through material collection options (interactive/self-guided/import)",
+      "files": [],
+      "notes": "Minimal input — skill should guide the user through the full setup interactively"
+    },
+    {
+      "id": 4,
+      "prompt": "I already ran setup before. I want to update my template from Overleaf.",
+      "expected_output": "Detects existing .claude/resume-config.json, reads it, offers reconfigure/update/keep options. If user chooses update, re-pulls from the stored source_url without touching material/ files",
+      "files": [".claude/resume-config.json"],
+      "notes": "Edge case: existing configuration with update request"
+    },
+    {
+      "id": 5,
+      "prompt": "Setup resume. My template is at /nonexistent/path/template/",
+      "expected_output": "Attempts to validate the path, finds it doesn't exist or contains no .tex files, informs the user the path is invalid, asks for a corrected path. Does NOT save an invalid config.",
+      "files": [],
+      "notes": "Edge case: invalid template path"
+    }
+  ]
+}
