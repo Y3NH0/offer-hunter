@@ -1,0 +1,17 @@
+{
+  "name": "Y3NH0-offer-hunter",
+  "description": "Offer Hunter plugin marketplace",
+  "owner": {
+    "name": "Yen-Ho Chen"
+  },
+  "plugins": [
+    {
+      "name": "offer-hunter",
+      "description": "AI-powered resume toolkit: generate tailored CVs & Cover Letters, review resumes, research job targets, and prepare interview slides",
+      "source": {
+        "source": "github",
+        "repo": "Y3NH0/offer-hunter"
+      }
+    }
+  ]
+}
