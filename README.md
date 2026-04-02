@@ -13,19 +13,15 @@ A [Claude Code](https://claude.ai/code) plugin that turns job descriptions into 
 
 **Prerequisites:** [Claude Code](https://claude.ai/code) CLI, a LaTeX compiler (XeLaTeX/pdfLaTeX/LuaLaTeX), and a LaTeX resume template ([Overleaf](https://www.overleaf.com/latex/templates/tagged/cv), GitHub, or your own).
 
-## The Pipeline
+## What You Can Do
 
 ```
-/setup-resume          Configure template + fill in your materials (one-time)
-        ↓
-/generate-resume       Paste a JD → get a tailored CV + Cover Letter
-        ↓
-@resume-reviewer       Score it on 7 dimensions, catch gaps before you send
-        ↓
-/job-recon             Research the company, team, and interviewer
-        ↓
-/interview-slides      Generate self-intro slides for the interview
+📄 Resume        /setup-resume → /generate-resume → @resume-reviewer
+🔍 Recon         /job-recon
+🎤 Slides        /interview-slides
 ```
+
+Each feature works independently. Use them together or on their own.
 
 ## Features
 

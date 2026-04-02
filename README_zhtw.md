@@ -13,19 +13,15 @@
 
 **前置需求：**[Claude Code](https://claude.ai/code) CLI、LaTeX 編譯器（XeLaTeX/pdfLaTeX/LuaLaTeX）、一份 LaTeX 履歷模板（[Overleaf](https://www.overleaf.com/latex/templates/tagged/cv)、GitHub 或你自己的）。
 
-## 完整流程
+## 三大功能
 
 ```
-/setup-resume          設定模板 + 填寫素材（一次性）
-        ↓
-/generate-resume       貼上 JD → 產出客製化 CV + Cover Letter
-        ↓
-@resume-reviewer       7 個維度評分，送出前抓漏
-        ↓
-/job-recon             調查公司、團隊、面試官
-        ↓
-/interview-slides      生成面試自介簡報
+📄 履歷生成      /setup-resume → /generate-resume → @resume-reviewer
+🔍 求職偵察      /job-recon
+🎤 面試簡報      /interview-slides
 ```
+
+每個功能獨立運作，可以搭配使用也可以單獨使用。
 
 ## 功能
 
