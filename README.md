@@ -18,7 +18,7 @@ A [Claude Code](https://claude.ai/code) plugin that turns job descriptions into 
 ```
 📄 Resume        /setup-resume → /generate-resume → @resume-reviewer
 🔍 Recon         /job-recon
-🎤 Slides        /interview-slides
+🎤 Interview     /interview-strategy → /interview-slides
 ```
 
 Each feature works independently. Use them together or on their own.
@@ -67,6 +67,16 @@ Every improvement comes with a concrete rewrite suggestion. Choose your reviewer
 
 Produces a structured report: key people's backgrounds, team tech stack, open source output, recent news, real interview experiences from Glassdoor/Blind/Reddit/PTT/Dcard, and specific preparation advice.
 
+### `/interview-strategy` — Interview Preparation Strategy
+
+```
+/interview-strategy novatek-ai-application-engineer-it
+```
+
+Produces a comprehensive interview strategy **document** (not slides): JD ↔ material alignment, slide skeleton with speaker scripts, through-line verbal bridges, Fit Analysis + 30/60/90 ramp plan for JD gaps, 誘餌地圖 × Q&A prep, behavioral STAR prep, risk mitigation, and execution checklist.
+
+Run this **before** `/interview-slides` — strategy informs the actual deck. The strategy doc is the single source of truth for what you'll say; the deck is its implementation.
+
 ### `/interview-slides` — Presentation Slides
 
 ```
@@ -74,6 +84,8 @@ Produces a structured report: key people's backgrounds, team tech stack, open so
 ```
 
 Generates a Marp slide deck for self-introductions — narrative arc, speaker notes, timing guidance. Supports 1/3/5 minute presets. Export to PDF/PPTX via Marp CLI or VS Code.
+
+Works best when fed a prior `/interview-strategy` output.
 
 ## How It Works
 
@@ -92,7 +104,8 @@ your-template/            Your LaTeX template (configured once)
 docs/resumes/             Output (one folder per application)
 └── stripe-sr-ml-eng/
     ├── cv.tex → cv.pdf
-    └── cover-letter.tex → cover-letter.pdf
+    ├── cover-letter.tex → cover-letter.pdf
+    └── interview-strategy.md
 
 docs/research/            Recon reports
 docs/slides/              Interview slides

@@ -18,7 +18,7 @@
 ```
 📄 履歷生成      /setup-resume → /generate-resume → @resume-reviewer
 🔍 求職偵察      /job-recon
-🎤 面試簡報      /interview-slides
+🎤 面試準備      /interview-strategy → /interview-slides
 ```
 
 每個功能獨立運作，可以搭配使用也可以單獨使用。
@@ -67,6 +67,16 @@
 
 產出結構化報告：關鍵人物背景、團隊技術棧、開源產出、近期動態、來自 Glassdoor/Blind/Reddit/PTT/Dcard 的真實面試經驗、以及具體準備建議。
 
+### `/interview-strategy` — 面試策略
+
+```
+/interview-strategy novatek-ai-application-engineer-it
+```
+
+產出一份完整的面試**策略文件**（不是簡報）：JD ↔ 素材對齊表、帶講稿的 slide 骨架、through-line 口頭銜接、針對 JD 缺口的 Fit Analysis + 30/60/90 Ramp Plan、誘餌地圖 × Q&A 準備、behavioral STAR 準備、風險預案、執行 checklist。
+
+建議在 `/interview-slides` **之前**執行 — 策略文件是你要講什麼的唯一事實來源；簡報只是它的實作。
+
 ### `/interview-slides` — 面試簡報
 
 ```
@@ -74,6 +84,8 @@
 ```
 
 生成 Marp 自介簡報 — 敘事弧線、講者備註、時間指引。支援 1/3/5 分鐘預設。可用 Marp CLI 或 VS Code 匯出 PDF/PPTX。
+
+搭配 `/interview-strategy` 的產出效果最佳。
 
 ## 運作方式
 
@@ -92,7 +104,8 @@ your-template/            你的 LaTeX 模板（設定一次）
 docs/resumes/             輸出（每個申請一個資料夾）
 └── stripe-sr-ml-eng/
     ├── cv.tex → cv.pdf
-    └── cover-letter.tex → cover-letter.pdf
+    ├── cover-letter.tex → cover-letter.pdf
+    └── interview-strategy.md
 
 docs/research/            偵察報告
 docs/slides/              面試簡報
